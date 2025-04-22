@@ -1,0 +1,7 @@
+email:
+  host: smtp.qq.com
+  port: 465
+  username: 1790060255@qq.com
+  password: glhtpytpunwtefae
+  from: 1790060255@qq.com
+  usetls: true

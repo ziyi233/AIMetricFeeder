@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Subject}}</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    .logo {
+      max-height: 50px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      color: #2c3e50;
+      margin: 0 0 10px 0;
+      font-size: 24px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin: 25px 0 15px 0;
+      font-size: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .summary {
+      background-color: #f8f9fa;
+      border-left: 4px solid #4a6fa5;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .risk {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .risk-low {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .risk-medium {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .risk-high {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .risk-critical {
+      background-color: #dc3545;
+      color: white;
+    }
+    .details {
+      margin: 20px 0;
+    }
+    .logs {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 15px;
+      margin: 20px 0;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 13px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      color: #777;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      {{if .LogoUrl}}
+      <img src="{{.LogoUrl}}" alt="Logo" class="logo">
+      {{end}}
+      <h1>{{.Title}}</h1>
+      <p>{{.Subtitle}}</p>
+    </div>
+
+    <div class="summary">
+      <h2>分析概要</h2>
+      <p><strong>结论：</strong> {{.AISummary}}</p>
+      <p>
+        <strong>风险等级：</strong> 
+        <span class="risk risk-{{.RiskLevelLower}}">{{.RiskLevel}}</span>
+      </p>
+      <p><strong>分析时间：</strong> {{.AnalysisTime}}</p>
+    </div>
+
+    <div class="details">
+      <h2>AI 详细分析</h2>
+      <div style="white-space: pre-wrap;">{{.AIDetails}}</div>
+    </div>
+    <h2>原始日志</h2>
+    <div class="logs">
+      <pre>{{.LogContent}}</pre>
+    </div>
+
+    <div class="footer">
+      <p>{{.Footer}}</p>
+      <p>此邮件由系统自动生成，请勿直接回复。</p>
+    </div>
+  </div>
+</body>
+</html>
